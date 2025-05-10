@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+    
     // Assigning Variables Initials Values and Some Shortcuts
     const board = document.getElementById("game-board");
     const gameOverMessage = document.getElementById("game-over-message");
