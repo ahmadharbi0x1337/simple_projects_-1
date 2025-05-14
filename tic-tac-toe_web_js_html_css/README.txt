@@ -9,6 +9,8 @@ by Using the following method :
 
 $ git clone --no-checkout https://github.com/ahmadharbi0x1337/simple_projects_-1.git
 
+$ cd simple_projects_-1/
+
 $ git sparse-checkout init cone
 
 $ git sparse-checkout set tic-tac-toe_web_js_html_css/
