@@ -60,6 +60,7 @@ body{
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 	transform: scale(1.1);
 }
+
 button{
     display: none;
     background-color: rgba(0, 0, 0, 0.400);
@@ -91,6 +92,7 @@ button:hover{
 	text-align: center;
 	display: none;
 }
+
 @media screen and (max-width: 750px) {
 	#game-board{
 		max-width: 90%;
