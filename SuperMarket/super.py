@@ -30,8 +30,20 @@ class Super:
         self.food6 = IntVar()
         self.food7 = IntVar()
         self.food8 = IntVar()
-        self.food9 = IntVar() 
+        self.food9 = IntVar()
 
+            # Food Prices, i know it's hard coded and it's not by any means right, but it's a simple project and i want to keep it that way, plus will learn more about dicts in python
+        self.food_prices = {
+        "food1":(self.food1,5.0),
+        "food2":(self.food2,25.0),
+        "food3":(self.food3,9.0),
+        "food4":(self.food4,35.0),
+        "food5":(self.food5,20.0),
+        "food6":(self.food6,15.0),
+        "food7":(self.food7,2.0),
+        "food8":(self.food8,1.0),
+        "food9":(self.food9,0.5),        
+        }
             # Electronics Variables
         self.electro1 = IntVar()
         self.electro2 = IntVar()
@@ -43,6 +55,18 @@ class Super:
         self.electro9 = IntVar()
         self.electro10 = IntVar()
 
+            # Electronic Prices
+        self.electro_prices = {
+            'electro1':(self.electro1, 250),
+            'electro2':(self.electro2, 100),
+            'electro3':(self.electro3, 90),
+            'electro5':(self.electro5, 65),
+            'electro6':(self.electro6, 70),
+            'electro7':(self.electro7, 360),
+            'electro8':(self.electro8, 200),
+            'electro9':(self.electro9, 160),
+            'electro10':(self.electro10, 150),
+        }
             # Household Variables
         self.house1 = IntVar()
         self.house2 = IntVar()
@@ -53,6 +77,17 @@ class Super:
         self.house7 = IntVar()
         self.house8 = IntVar()
 
+            # Household Prices
+        self.house_prices = {
+            'house1': (self.house1 ,570),
+            'house2': (self.house2 ,280),
+            'house3': (self.house3 ,450),
+            'house4': (self.house4 ,230),
+            'house5': (self.house5 ,890),
+            'house6': (self.house6 ,340),
+            'house7': (self.house7 ,670),
+            'house8': (self.house8 ,600),
+        }
             # Customer Data Variabls
         self.customer_name = StringVar()
         self.customer_number = StringVar()
@@ -164,7 +199,7 @@ class Super:
                     # THIS NEEDS TO BE UNDERSTOOD MORE ???#####
         scrol_y = Scrollbar(F2sub2, orient=VERTICAL)
         self.textarea = Text(F2sub2, yscrollcommand=scrol_y.set, wrap=WORD)
-        scrol_y.pack(side=LEFT, fill=Y)
+        scrol_y.pack(side=RIGHT, fill=Y)
         scrol_y.config(command=self.textarea.yview)
         self.textarea.pack(fill=BOTH, expand=1)
 
@@ -177,7 +212,7 @@ class Super:
 
                     # First Button #
 
-        f3_btn1 = Button(F3, text='Clear Fields', width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white')
+        f3_btn1 = Button(F3, text='Clear Fields', width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', command=self.clear_fields)
         f3_btn1.place(x=5, y=15)
         self.root.update_idletasks()
         f3_btn1_width = f3_btn1.winfo_width()
@@ -185,7 +220,7 @@ class Super:
 
                     # Second Button #
 
-        f3_btn2 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Checkout')
+        f3_btn2 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Checkout', command=self.total_checkout)
         f3_btn2.place(x=f3_btn1_width+30, y=15)
         self.root.update_idletasks()
         f3_btn2_width = f3_btn2.winfo_width()
@@ -193,7 +228,7 @@ class Super:
 
                     # Third Button #
 
-        f3_btn3 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Close')
+        f3_btn3 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Close', command=self.root.destroy)
         f3_btn3.place(x=5, y=f3_btn1_height+50)
         self.root.update_idletasks()
         f3_btn3_width = f3_btn3.winfo_width()
@@ -201,7 +236,7 @@ class Super:
 
                     # Fourth Button #
 
-        f3_btn4 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Export Invoice')
+        f3_btn4 = Button(F3, width=15, font=('Ubuntu Sans Mono', 12, 'bold'), fg='black', bg='white', text='Export Invoice', command=self.export_invoice)
         f3_btn4.place(x=f3_btn1_width+30, y=f3_btn1_height+50)
         self.root.update_idletasks()
         f3_btn4_width = f3_btn4.winfo_width()
@@ -281,7 +316,7 @@ class Super:
         f4_entry3 = Entry(F4, justify=CENTER, width=10, textvariable=self.food3, font=('Ubuntu Sans Mono', 12, 'bold'))
         f4_entry3.place(x=110, y=150)
 
-        f4_lb4 = Label(F4, text='Rice', font=('Ubuntu Sans Mono', 13, 'bold'), bg='#413e3e', fg='white')
+        f4_lb4 = Label(F4, text='Kiwi', font=('Ubuntu Sans Mono', 13, 'bold'), bg='#413e3e', fg='white')
         f4_lb4.place(x=20, y=200)
 
         f4_entry5 = Entry(F4, justify=CENTER, width=10, textvariable=self.food4, font=('Ubuntu Sans Mono', 12, 'bold'))
@@ -455,25 +490,145 @@ class Super:
         f6_entry8.place(x=110, y=400)
         self.welcome()
 
+
+#===== METHODS =====#
+
+                
+    # A Function To Calculate The Total Of All Purchases and display it on the textarea
+    def total_checkout(self):
+        
+        # Checking If The Entries Are All Blank Then Will throw a warning here for the user
+        if not self.customer_name.get() or not self.customer_number.get():
+            messagebox.showwarning("Missing Info, Please Entrer Customer Names And Customer Phone Number")
+            print("WRONG 2")
+            return
+        
+        if all(var.get() == 0 for cat in [self.food_prices, self.house_prices, self.electro_prices] for var, _ in cat.values()):
+            messagebox.showwarning("Empty Cart, Please Select at Least One Item To Bill")
+            print("WRONG 1")
+            return
+        
+
+        # Food Total
+        food_total = 0
+        for name ,(food, price) in self.food_prices.items():
+            quantity = food.get()
+            food_total += quantity * price
+        self.food.set(f"{food_total:.2f}")
+
+        # Electronics Total
+
+        electro_total = 0
+        for name ,(electro, price) in self.electro_prices.items():
+            quantity = electro.get()
+            electro_total += quantity * price
+        self.electronics.set(f"{electro_total:.2f}")
+
+
+        # Household Total
+
+        house_total = 0
+        for name ,(house, price) in self.house_prices.items():
+            quantity = house.get()
+            house_total += quantity * price
+        self.household.set(f"{house_total:.2f}")
+
+
+        self.textarea.delete("1.0", END)
+
+        self.textarea.insert(END,f"\n=====================================================")
+        self.textarea.insert(END,f"\nInvoice: {self.invoice.get()}")
+        self.textarea.insert(END,f"\nName: {self.customer_name.get()}")
+        self.textarea.insert(END,f"\nPhone: {self.customer_number.get()}")
+        self.textarea.insert(END,f"\n=====================================================")
+        self.textarea.insert(END,f"\nProduct\t\tPrice\t\tQty\tTotal")
+        self.textarea.insert(END,f"\n-----------------------------------------------------")
+
+        grand_total = 0
+        
+        def display_items(item_dict):
+            nonlocal grand_total
+            for name, (var, price) in item_dict.items():
+                qty = var.get()
+                if qty > 0:
+                    total = qty * price
+                    grand_total += total
+                    self.textarea.insert(END,f"\n{name.capitalize():<16}\t {price}\t\t\t {qty} \t{total:.2f}")
+
+        display_items(self.food_prices)
+        display_items(self.house_prices)
+        display_items(self.electro_prices)
+        self.textarea.insert(END, "\n=====================================================")
+        self.textarea.insert(END, f"\nTotal Food: {self.food.get()}")
+        self.textarea.insert(END, f"\nTotal Electronics: {self.electronics.get()}")
+        self.textarea.insert(END, f"\nTotal Household: {self.household.get()}")
+        self.textarea.insert(END, f"\n\nGrand Total: {grand_total:.2f}")
+        self.textarea.insert(END, "\n=====================================================")
+        self.textarea.insert(END, "\n        Thank you for shopping with us!")
+        self.textarea.insert(END, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    
+
+
+    # Export Invoice Function
+
+    def export_invoice(self):
+        bill_text = self.textarea.get(1.0, END)
+        try:
+            filename = f"invoice_{self.invoice.get()}.txt"
+            with open(filename, "w") as f:
+                f.write(bill_text)
+            messagebox.showinfo("Success", f"Invoice saved as {filename}")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to save invoice:\n{e}")
+
+    # A Function To Clear All Fields
+    def clear_fields(self):
+        self.customer_name.set('')
+        self.customer_number.set('')
+        self.invoice.set(0)
+        self.food.set(0)
+        self.household.set(0)
+        self.electronics.set(0)
+        self.food1.set(0)
+        self.food2.set(0)
+        self.food3.set(0)
+        self.food4.set(0)
+        self.food5.set(0)
+        self.food6.set(0)
+        self.food7.set(0)
+        self.food8.set(0)
+        self.food9.set(0)
+        self.electro1.set(0)
+        self.electro2.set(0)
+        self.electro3.set(0)
+        self.electro5.set(0)
+        self.electro6.set(0)
+        self.electro7.set(0)
+        self.electro8.set(0)
+        self.electro9.set(0)
+        self.electro10.set(0)
+        self.house1.set(0)
+        self.house2.set(0)
+        self.house3.set(0)
+        self.house4.set(0)
+        self.house5.set(0)
+        self.house6.set(0)
+        self.house7.set(0)
+        self.house8.set(0)
+
+
         # Welcome Method
 
     def welcome(self):
             self.textarea.delete('1.0', END)
             self.textarea.insert(END, "\t      Welcome To 1337 SuperMarket")
             self.textarea.insert(END, "\n=====================================================")
-            self.textarea.insert(END, f"\nInvoice : {self.invoice.get()}\n")
-            self.textarea.insert(END, f"\nName : {self.customer_name.get()}\n")
-            self.textarea.insert(END, f"\nPhone : {self.customer_number.get()}\n")
-            self.textarea.insert(END,"=============================================================\n")
-            self.textarea.insert(END,f"\t Purchases \t\t Price \t  \t Qt \t \n")
-
-            self.textarea.insert(END,"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 
 
-root = Tk()
-ob = Super(root)
 
-
-
-root.mainloop()
+if __name__ == "__main__":
+    root = Tk()
+    app = Super(root)
+    root.mainloop()

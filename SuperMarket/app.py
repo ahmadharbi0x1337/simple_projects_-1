@@ -18,7 +18,8 @@ def login():
     user = username_entry.get()
     passwd = password_entry.get()
     if user == 'ahmad' and passwd == '12345':
-        messagebox.showinfo('Successfully Authenticated','Your Credentials Are Correct!')
+        app.destroy()
+        os.system(f"python {os.path.join(app_path, "super.py")}")
     else:
         messagebox.showerror('Authentication Failed', 'Your Credentials Are Not Correct!!')
 
