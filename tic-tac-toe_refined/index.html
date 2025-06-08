@@ -20,34 +20,37 @@
           <p>Player 1, You Are Up!</p>
         </div>
         <!-- Drop Down Menu -->
-        <div class="menu">
+        <div class="menu" data-id="menu">
           <button class="menu-btn" data-id="menu-btn">
             Actions <i class="fa-solid fa-chevron-down"></i>
           </button>
-          <div class="items border hidden" data-id="menu-popover">
+          <div class="items border hidden" data-id="menu-items">
             <button data-id="reset-button">Reset</button>
             <button data-id="new-round-button">New Round</button>
           </div>
         </div>
         <!-- Game Board-->
-        <div id="1" class="square shadow"></div>
-        <div id="2" class="square shadow"></div>
-        <div id="3" class="square shadow"></div>
-        <div id="4" class="square shadow"></div>
-        <div id="5" class="square shadow"></div>
-        <div id="6" class="square shadow"></div>
-        <div id="7" class="square shadow"></div>
-        <div id="8" class="square shadow"></div>
-        <div id="9" class="square shadow"></div>
+        <div data-id="square" id="1" class="square shadow"></div>
+        <div data-id="square" id="2" class="square shadow"></div>
+        <div data-id="square" id="3" class="square shadow"></div>
+        <div data-id="square" id="4" class="square shadow"></div>
+        <div data-id="square" id="5" class="square shadow"></div>
+        <div data-id="square" id="6" class="square shadow"></div>
+        <div data-id="square" id="7" class="square shadow"></div>
+        <div data-id="square" id="8" class="square shadow"></div>
+        <div data-id="square" id="9" class="square shadow"></div>
         <!-- Score Board -->
         <div class="score shadow" style="background-color: var(--turquoise)">
-          <p>Player 1 <span data-id="player1-stats">0 Wins</span></p>
+          <p>Player 1</p>
+          <span data-id="player1-stats">0 Wins</span>
         </div>
-        <div class="score shadow" style="background-color: var(--light-grey)">
-          <p>Ties<span data-id="ties">0</span></p>
+        <div class="score shadow" style="background-color: var(--light-gray)">
+          <p>Ties</p>
+          <span data-id="ties">0</span>
         </div>
         <div class="score shadow" style="background-color: var(--yellow)">
-          <p>Player 2 <span data-id="player2-stats">0 Wins</span></p>
+          <p>Player 2</p>
+          <span data-id="player2-stats">0 Wins</span>
         </div>
       </div>
     </main>
@@ -64,11 +67,14 @@
       </p>
     </footer>
     <!-- Modal That Opens When Game Ends -->
-    <div class="modal">
+    <div class="modal hidden">
       <div class="modal-content">
         <p>Player 1 Wins!</p>
         <button>Play Again</button>
       </div>
     </div>
+    <!-- JS Main Script 'Controls The Whole App!' -->
+    <script src="js/app.js" type="module"></script>
   </body>
 </html>
+
