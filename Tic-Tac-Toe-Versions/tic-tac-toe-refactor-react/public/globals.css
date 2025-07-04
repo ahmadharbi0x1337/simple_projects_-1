@@ -1,0 +1,138 @@
+/* NORMALIZATION RESETS AND REUSABLES */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+:root {
+  --dark-gray: #1a2a32;
+  --gray: #2e4756;
+  --turquoise: #3cc4bf;
+  --yellow: #f2b147;
+  --light-gray: #d3d3d3;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  border: none;
+  font-family: "Ubuntu Sans Mono", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  background-color: var(--dark-gray);
+}
+/* SHARED UTILITY CLASSES */
+.hidden {
+  display: none !important;
+}
+button:hover {
+  cursor: pointer;
+  opacity: 90%;
+}
+.yellow {
+  color: var(--yellow);
+}
+.border {
+  border: 1px solid rgba(211, 211, 211, 0.4) !important;
+}
+.turquoise {
+  color: var(--turquoise);
+}
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+/* LAYOUT */
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 90px 20px;
+  justify-content: center;
+  align-items: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: 50px repeat(3, 80px) 60px;
+  gap: 5px;
+}
+/* RESPONSITIVITY */
+@media (min-width: 768px) {
+  .grid {
+    width: 490px;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: 50px repeat(3, 120px) 60px;
+    gap: 20px;
+  }
+}
+/* TURN INDICATOR & IT'S ANIMATION */
+.turn {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 20px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+@keyframes turn-text-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+.turn p {
+  font-size: 14px;
+  animation: 0.6s ease-in-out turn-text-animation;
+}
+
+@keyframes turn-icon-animation {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.turn i {
+  font-size: 1.8rem;
+  margin-left: 18px;
+  animation: 0.6s ease-in-out turn-icon-animation;
+}
+
+/* GAME BOARD (CELLS) */
+.square {
+  display: flex;
+  background-color: var(--gray);
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-radius: 10px;
+}
+.square:hover {
+  cursor: pointer;
+  opacity: 90%;
+  transition: 0.7s ease-in-out;
+  transform: scale(1.02);
+}
+/* SCORE BOARD */
+.score {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.score p {
+  font-weight: 400;
+  font-size: 14px;
+}
+.score span {
+  font-size: 12px;
+  margin-top: 2px;
+}

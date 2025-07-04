@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    /* Language and Environment */
+    "target": "es6",
+    /* Modules */
+    "module": "es6",
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node"
+  }
+}
