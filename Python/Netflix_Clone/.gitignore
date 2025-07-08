@@ -1,0 +1,5 @@
+venv/
+venv/*
+note.txt
+__pycache__/*
+*.pyc
